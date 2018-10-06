@@ -1,11 +1,10 @@
-#Task Tracker 
-
-
-View Live Version: https://ianmitch90.github.io/
+# Task Tracker 
+[![Build Status](https://travis-ci.org/ianmitch90/todo.svg?branch=master)](https://travis-ci.org/ianmitch90/todo)
+## View Live Version: https://ianmitch90.github.io/
 
 ![Task Tracker Gif](https://thumbs.gfycat.com/ImmediateRaggedEuropeanfiresalamander-size_restricted.gif)
 
-##Overview
+## Overview
 
 * Usage and Installation
 * Technologies Used
