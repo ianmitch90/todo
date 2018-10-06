@@ -43,7 +43,7 @@ yarn build
 ```
 * note that the service worker now works in both enviorments, if you wish to disable:
 
-###index.js ( Top Level )
+### index.js ( Top Level )
 ```
 change the execution of the service worker
 
@@ -55,7 +55,7 @@ serviceWorker.unregister();
 
 Save your changes.
 ```
-#Technologies:
+# Technologies:
 * [Redux](https://redux.js.org/)
 * [Redux Saga](https://redux-saga.js.org/)
 * [Material-UI](https://material-ui.com/)
@@ -64,7 +64,7 @@ Save your changes.
 
 I am using Travis CI so be aware that my settings are not shared and you will have to set up your own settings/keys between travis and github ( or other hosting platform )
 
-#Helpful Resources
+# Helpful Resources
 ##React Saga
 React Saga is pretty difficult to grasp at first, however if you are familiar with thunk you might have a easier time learning this middleware library.
 
