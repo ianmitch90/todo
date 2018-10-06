@@ -1,0 +1,42 @@
+//storing all these action types because its getting hard to keep track of each part of the async behaviors in saga/redux
+
+//initializer actions
+export const FETCHING_TODOS = "FETCHING_TODOS";
+export const ADD_TODO_START = "ADD_TODO_START";
+export const COMPLETE_TODO_START = "COMPLETE_TODO_START";
+export const REMOVE_TODO_START = "REMOVE_TODO_START";
+export const EDIT_TODO_START = "EDIT_TODO_START";
+
+//confirmation actions
+export const FETCHING_TODOS_COMPLETE = "FETCHING_TODOS_COMPLETE";
+export const ADD_TODO_COMPLETE = "ADD_TODO_COMPLETE";
+export const EDIT_TODO_COMPLETE = "EDIT_TODO_COMPLETE";
+export const REMOVE_TODO_COMPLETE = "REMOVE_TODO_COMPLETE";
+export const COMPLETE_TODO_COMPLETE = "COMPLETE_TODO_COMPLETE";
+
+//err handle actions
+export const EDIT_TODO_ERR = "EDIT_TODO_ERR";
+export const REMOVE_TODO_ERR = "REMOVE_TODO_ERR";
+export const COMPLETE_TODO_ERR = "COMPLETE_TODO_ERR";
+export const ADD_TODO_ERR = "ADD_TODO_ERR";
+export const FETCH_TODO_ERR = "FETCH_TODO_ERR";
+
+
+
+export default {
+	FETCHING_TODOS,
+	ADD_TODO_START,
+	EDIT_TODO_START,
+	REMOVE_TODO_START,
+	COMPLETE_TODO_START,
+	FETCHING_TODOS_COMPLETE,
+	ADD_TODO_COMPLETE,
+	EDIT_TODO_COMPLETE,
+	REMOVE_TODO_COMPLETE,
+	COMPLETE_TODO_COMPLETE,
+	FETCH_TODO_ERR,
+	ADD_TODO_ERR,
+	EDIT_TODO_ERR,
+	REMOVE_TODO_ERR,
+	COMPLETE_TODO_ERR,
+};

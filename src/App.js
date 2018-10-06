@@ -1,28 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { fetchTodos } from './components/store/actions/todos';
+import TodoMain from './components/todo/TodoMain';
+import TodoEdit from './components/todo/TodoEdit'
+
+
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: '#eee',
+    height: '100vh',
+
+  },
+
+  control: {
+    padding: theme.spacing.unit * 2
+  },
+});
 
 class App extends Component {
   render() {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className='App'>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path ='/' component={TodoMain}/>
+          <Route path = '/edit/:id' component={TodoEdit}/>
+          <Redirect path = '*' to='/'/>
+        </Switch>
+      </BrowserRouter>
       </div>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+	classes: PropTypes.object.isRequired
+}
+
+const mapDispatchToProps = (dispatch) => ({
+	fetchTodos: () => dispatch(fetchTodos())
+});
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(App));
