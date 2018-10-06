@@ -1,6 +1,7 @@
 {
   "name": "to-do-all-the-things",
   "version": "0.1.0",
+  "homepage": "https://ianmitch90.github.io/todo/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.1.2",

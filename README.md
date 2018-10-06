@@ -9,7 +9,7 @@
 * Helpful Resources
 * Acknowledgments
 
-#Usage & Installation
+##Usage & Installation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -41,7 +41,7 @@ yarn build
 ```
 * note that the service worker now works in both enviorments, if you wish to disable:
 
-####index.js ( Top Level )
+###index.js ( Top Level )
 ```
 change the execution of the service worker
 
