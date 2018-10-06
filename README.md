@@ -1,5 +1,6 @@
-#Task Tracker
 [![Build Status](https://travis-ci.org/ianmitch90/todo.svg?branch=master)](https://travis-ci.org/ianmitch90/todo)
+
+#Task Tracker
 
 View Live Version: https://ianmitch90.github.io/
 
