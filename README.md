@@ -21,7 +21,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Getting Started :nail_care:
+### Getting Started :nail_care:
 
 To clone the portfolio from Terminal
 
