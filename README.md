@@ -1,28 +1,34 @@
 # Task Tracker 
 [![Build Status](https://travis-ci.org/ianmitch90/todo.svg?branch=master)](https://travis-ci.org/ianmitch90/todo)
-## View Live Version: https://ianmitch90.github.io/todo/
+## :warning: View Live Version: https://ianmitch90.github.io/todo/
+
+### :warning: Beware!! :warning: The live version does not have full support from the routes, the root of the live version points outside the scope of the app, however due to browser history & this project auto caching itself, it can try to stay alive and work with regular use.
+
+### :white_check_mark: For the proper experience/and Redux working properly and not throwing errors with each request please use the Local Version! information on how to download and install is below. :smile:
 
 ![Task Tracker Gif](https://thumbs.gfycat.com/ImmediateRaggedEuropeanfiresalamander-size_restricted.gif)
 
-## Overview
+## Overview :100:
 
 * Usage and Installation
+* Getting Started
 * Technologies Used
+* Deployment
 * Helpful Resources
 * Acknowledgments
 
-## Usage & Installation
+## Usage & Installation :floppy_disk:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Getting Started
+## Getting Started :nail_care:
 
 To clone the portfolio from Terminal
 
 ```
 git clone https://github.com/ianmitch90/todo.git
 ```
-### Installing
+### Installing :runner:
 
 Running and installing app:
 
@@ -55,18 +61,20 @@ serviceWorker.unregister();
 
 Save your changes.
 ```
-# Technologies:
+# Technologies: :rocket:
 * [Redux](https://redux.js.org/)
 * [Redux Saga](https://redux-saga.js.org/)
 * [Material-UI](https://material-ui.com/)
 
-## Deployment
+## Deployment :ship:
 
 I am using Travis CI so be aware that my settings are not shared and you will have to set up your own settings/keys between travis and github ( or other hosting platform )
 
-# Helpful Resources
-##React Saga
-React Saga is pretty difficult to grasp at first, however if you are familiar with thunk you might have a easier time learning this middleware library.
+# Helpful Resources :bookmark:
+
+## React Saga :izakaya_lantern:
+
+React Saga is pretty difficult to grasp at first, however if you are familiar with thunk you might have a easier time learning this middleware library. If you are familiar with Pub Sub's or rxJS this should be easier to understand.
 
 These resources were instrumental in completing this project:
 
@@ -77,10 +85,10 @@ These resources were instrumental in completing this project:
 * [Fetching data from an API using Redux Saga](https://www.youtube.com/watch?v=jQ4YD7Ip6T4)
 * [How to add Redux Saga to Create React App](https://www.youtube.com/watch?v=Bq_Hkj-G-4c)
 
-## Author
+## Author :pencil2:
 
 * **Ian Mitchell** - *Sole Author* - [ianmitch90](https://github.com/ianmitch90)
 
-## License
+## License :scroll:
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
