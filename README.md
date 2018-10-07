@@ -23,7 +23,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Getting Started :nail_care:
 
-To clone the portfolio from Terminal
+To clone the Task Tracker from Terminal
 
 ```
 git clone https://github.com/ianmitch90/todo.git
