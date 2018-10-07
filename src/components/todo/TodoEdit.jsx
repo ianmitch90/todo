@@ -55,6 +55,7 @@ export class TodoListDetails extends Component {
 	
 	completedButtonHandler = () => {
 		this.props.completeTodo(this.props.todo.id);
+		this.props.history.push("/");
 	}
 
 	cancelbuttonHandler = () => {

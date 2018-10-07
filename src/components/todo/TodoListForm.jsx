@@ -59,6 +59,8 @@ export class TodoListAddNew extends Component {
                                     value={this.state.title}
                                     margin="normal"
                                     onChange={this.formHandler}
+                                    variant='outlined'
+                                    label='Enter Task Title'
                                 />
                             </Grid>
                             <Grid item md={12}>
