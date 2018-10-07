@@ -7,7 +7,7 @@ import {
     IconButton,
     Button
 } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
+import { Close, DoneAllOutlined } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { removeTodo, completeTodo } from "../store/actions/todos";
@@ -41,8 +41,13 @@ export const TodoListItem = ({ todo, classes, history, removeTodo, completeTodo 
                 disabled={todo.completed}
                 tabIndex={-1}
                 onClick={() => completeTodo(todo.id)}
-            >Completed</Button>
-            <IconButton variant="outlin" onClick={() => removeTodo(todo.id)}>
+            >
+            <DoneAllOutlined/>
+            Completed</Button>
+            <IconButton 
+            variant="outlined"
+            color="secondary"
+            onClick={() => removeTodo(todo.id)}>
                 <Close />
             </IconButton>
         </ListItemSecondaryAction>
