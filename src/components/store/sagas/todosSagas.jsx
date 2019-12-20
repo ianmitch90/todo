@@ -39,12 +39,12 @@ export function* addNewTodoSaga(action) {
 }
 
 export function* editTodoSaga(action) {
-  const editTodo = (id, updates) => {
+  const editTodo = updates => {
     const patchHeaders = new Headers();
     patchHeaders.append("Content-Type", "application/json");
     patchHeaders.append("Access-Control-Allow-Origin", "*");
     return IsomorphFetch(
-      `https://practiceapi.devmountain.com/api/tasks/${id}`,
+      `https://practiceapi.devmountain.com/api/tasks/${updates.id}`,
       {
         method: "PATCH",
         headers: patchHeaders,

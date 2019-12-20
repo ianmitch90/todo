@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button, TextField, Paper } from "@material-ui/core";
+import { Formik } from "formik";
+import { Grid, Button, TextField, Paper, withStyles } from "@material-ui/core";
 import { ArrowBackIos, DoneAllOutlined } from "@material-ui/icons";
-import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import {
   fetchTodos,
@@ -10,12 +10,11 @@ import {
   completeTodo,
   removeTodo
 } from "../store/actions/todos";
+import { TextInputWrapped } from "../../shared";
+import { EditFormSchema } from "./utils/EditValidation";
 import Loader from "../Loader";
 
 const initialState = {
-  title: "",
-  description: "",
-  error: "",
   mounted: false
 };
 
@@ -59,128 +58,129 @@ export class TodoListDetails extends Component {
     };
   }
 
-  backbuttonHandler = () => {
-    this.props.history.push("/");
+  completedButtonHandler = values => {
+    const { completeTodo, history } = this.props;
+    completeTodo(values.id);
+    history.push("/");
   };
 
-  changesHandler = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-    this.props.todo[name] = value;
-  };
-
-  completedButtonHandler = () => {
-    this.props.completeTodo(this.props.todo.id);
-    this.props.history.push("/");
-  };
-
-  cancelbuttonHandler = () => {
-    const { todo, initialTodo } = this.props;
-    this.setState({ ...this.props.initialTodo });
-    todo.title = initialTodo.title;
-    todo.description = initialTodo.description;
-  };
-
-  saveButtonHandler = () => {
-    const { title, description, completed, id } = this.props.todo;
-    let updates = {
-      title,
-      description,
-      completed
-    };
-
-    if (updates.title === "" || updates.title.length < 1) {
-      return this.setState({ error: "Title cannot be empty!" });
-    }
-    this.props.editTodo(id, updates);
-    this.props.history.push("/");
+  saveButtonHandler = values => {
+    const { history, editTodo } = this.props;
+    editTodo(values);
+    history.push("/");
   };
 
   removeButtonHandler = () => {
-    this.props.removeTodo(this.props.todo.id);
-    this.props.history.push("/");
+    const { removeTodo, todo, history } = this.props;
+    removeTodo(todo.id);
+    history.push("/");
   };
 
   render() {
-    const { todo, classes, mounted } = this.props;
+    const { saveButtonHandler } = this;
+    const { todo, classes, mounted, history } = this.props;
+
     return (
       <div className={classes.container}>
         {mounted ? (
-          <Paper>
-            <Grid container className={classes.edit}>
-              <Grid item xs={12} className={classes.topButtons}>
-                <Button
-                  variant="extendedFab"
-                  color="primary"
-                  size="medium"
-                  onClick={this.backbuttonHandler}
-                >
-                  <ArrowBackIos />
-                  Back
-                </Button>
-                <Button
-                  variant="extendedFab"
-                  color="default"
-                  size="medium"
-                  disabled={todo.completed}
-                  onClick={() => this.completedButtonHandler(todo.id)}
-                >
-                  <DoneAllOutlined />
-                  Done
-                </Button>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Title"
-                  name="title"
-                  value={todo.title}
-                  onChange={this.changesHandler}
-                  className={classes.titleEdit}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Description"
-                  multiline
-                  name="description"
-                  value={todo.description}
-                  onChange={this.changesHandler}
-                  className={classes.descInput}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Grid container spacing={6}>
-                  <Grid item xs={4}>
+          <Formik
+            initialValues={todo}
+            validationSchema={EditFormSchema}
+            onSubmit={values => {
+              saveButtonHandler(values);
+            }}
+          >
+            {({
+              handleSubmit,
+              handleReset,
+              errors,
+              values,
+              handleChange,
+              touched,
+              isValid
+            }) => (
+              <Paper>
+                <Grid container className={classes.edit}>
+                  <Grid item xs={12} className={classes.topButtons}>
                     <Button
                       variant="outlined"
                       color="primary"
-                      onClick={this.saveButtonHandler}
+                      size="medium"
+                      onClick={() => history.push("/")}
                     >
-                      Save
+                      <ArrowBackIos />
+                      Back
                     </Button>
-                  </Grid>
-                  <Grid item xs={4}>
                     <Button
                       variant="outlined"
                       color="default"
-                      onClick={this.cancelbuttonHandler}
+                      size="medium"
+                      disabled={values.completed}
+                      onClick={() => this.completedButtonHandler(todo.id)}
                     >
-                      Undo
+                      <DoneAllOutlined />
+                      Done
                     </Button>
                   </Grid>
-                  <Grid item xs={4}>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      onClick={this.removeButtonHandler}
-                    >
-                      Remove
-                    </Button>
+                  <Grid item xs={12}>
+                    <TextInputWrapped
+                      className={classes.titleEdit}
+                      onChange={handleChange}
+                      label="Title"
+                      name="title"
+                      value={values.title}
+                      helperText={touched.title ? errors.title : ""}
+                      error={touched.title && Boolean(errors.title)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextInputWrapped
+                      className={classes.descInput}
+                      onChange={handleChange}
+                      label="Description"
+                      name="description"
+                      multiline
+                      value={values.description}
+                      helperText={touched.description ? errors.description : ""}
+                      error={touched.description && Boolean(errors.description)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Grid container spacing={6}>
+                      <Grid item xs={4}>
+                        <Button
+                          disabled={!isValid}
+                          variant="outlined"
+                          color="primary"
+                          onClick={handleSubmit}
+                        >
+                          Save
+                        </Button>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Button
+                          variant="outlined"
+                          color="default"
+                          onClick={handleReset}
+                        >
+                          Undo
+                        </Button>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          onClick={this.removeButtonHandler}
+                        >
+                          Remove
+                        </Button>
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            </Grid>
-          </Paper>
+              </Paper>
+            )}
+          </Formik>
         ) : (
           <Loader />
         )}
