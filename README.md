@@ -4,7 +4,7 @@
 
 ### :warning: Beware!! :warning: The live version does not have full support from the routes, the root of the live version points outside the scope of the app, however due to browser history & this project auto caching itself, it can try to stay alive and work with regular use.
 
-### :white_check_mark: For the proper experience/and Redux working properly and not throwing errors with each request please use the Local Version! information on how to download and install is below. :smile:
+### :white_check_mark: For the proper experience/and Redux working properly and not throwing errors with each request please use the Local Version! information on how to download and install is below.
 
 ![Task Tracker Gif](https://thumbs.gfycat.com/ImmediateRaggedEuropeanfiresalamander-size_restricted.gif)
 
