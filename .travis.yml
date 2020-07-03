@@ -3,12 +3,12 @@ node_js:
   - "stable"
 cache:
   directories:
-  - node_modules
+    - node_modules
 script:
   - npm run build
 deploy:
   provider: pages
-  skip_cleanup: true
+  cleanup: false
   github_token: $GITHUB_TOKEN
   local_dir: build
   on:
