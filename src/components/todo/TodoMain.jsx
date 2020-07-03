@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import List from "./TodoList";
 import Form from "./TodoListForm";
+import { useDispatch } from "react-redux";
+import { FETCHING_TODOS } from "../store";
 
 const styles = {
   height: "100vh",
@@ -17,33 +19,34 @@ const styles = {
     gridArea: "input",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   list: {
     gridArea: "list",
     overflowY: "auto",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   pre: {
-    gridArea: "pre"
-  }
+    gridArea: "pre",
+  },
 };
-export default class TodoMain extends React.PureComponent {
-  render() {
-    return (
-      <div style={styles}>
-        <div className="input" style={styles.input}>
-          <Form />
-        </div>
-        <div className="list" style={styles.list}>
-          <List />
-        </div>
-        <div className="pre" style={styles.pre}>
-          ---pre---
-        </div>
-        <div className="nav">nav</div>
+
+export const TodoMain = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: FETCHING_TODOS });
+  }, [dispatch]);
+
+  return (
+    <div style={styles}>
+      <div className="input" style={styles.input}>
+        <Form />
       </div>
-    );
-  }
-}
+      <div className="list" style={styles.list}>
+        <List />
+      </div>
+    </div>
+  );
+};

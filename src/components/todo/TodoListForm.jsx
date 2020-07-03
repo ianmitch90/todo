@@ -5,20 +5,20 @@ import {
   Paper,
   TextField,
   Typography,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import useForm from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { RHFInput } from "react-hook-form-input";
 import { Replay } from "@material-ui/icons";
 import { addTodo } from "../store/actions/todos";
 import { useDispatch } from "react-redux";
 
 const initalState = {
-  title: ""
+  title: "",
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   paper: {
     display: "flex",
     justifyContent: "center",
@@ -28,18 +28,18 @@ const styles = theme => ({
       "linear-gradient(120deg, #FFDEE9 0%, #dfe6e9 25%, #74b9ff 25%, #B5FFFC 100%)",
     backgroundBlendMode: "overlay",
     padding: theme.spacing(2),
-    width: 500
+    width: 500,
   },
   newTaskAction: {
     display: "flex",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
 });
 
-const TodoListAddNew = props => {
+const TodoListAddNew = (props) => {
   const dispatch = useDispatch();
   const { handleSubmit, register, setValue, reset } = useForm({
-    mode: "onChange"
+    mode: "onChange",
   });
   // so you can destructure any methods related to the current from you are useing that you want to use, usually you will need register and handleSubmit to hook into the lib's context. please note: setValue behaves like react.memo() it tries not to unessesarilly rerender
 
@@ -48,7 +48,7 @@ const TodoListAddNew = props => {
       <Typography variant="h5">TASK TRACKER</Typography>
 
       <form
-        onSubmit={handleSubmit(data => {
+        onSubmit={handleSubmit((data) => {
           console.log("submitted:", data);
           dispatch(addTodo(data));
           reset(initalState);
@@ -84,7 +84,7 @@ const TodoListAddNew = props => {
 };
 
 TodoListAddNew.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(TodoListAddNew);

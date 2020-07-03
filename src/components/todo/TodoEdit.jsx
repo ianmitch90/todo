@@ -1,70 +1,70 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Formik } from "formik";
-import { Grid, Button, TextField, Paper, withStyles } from "@material-ui/core";
+import { Grid, Button, Paper, withStyles } from "@material-ui/core";
 import { ArrowBackIos, DoneAllOutlined } from "@material-ui/icons";
 import { connect } from "react-redux";
 import {
   fetchTodos,
   editTodo,
   completeTodo,
-  removeTodo
+  removeTodo,
 } from "../store/actions/todos";
 import { TextInputWrapped } from "../../shared";
 import { EditFormSchema } from "./utils/EditValidation";
 import Loader from "../Loader";
 
 const initialState = {
-  mounted: false
+  mounted: false,
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   container: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh !important"
+    height: "100vh !important",
   },
   edit: {
     width: "100%",
     maxWidth: 500,
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   topButtons: {
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
-    marginBottom: theme.spacing(5)
+    marginBottom: theme.spacing(5),
   },
   titleEdit: {
     width: "100%",
-    marginRight: theme.spacing()
+    marginRight: theme.spacing(),
   },
   descInput: {
     width: "100%",
-    marginBottom: theme.spacing(5)
+    marginBottom: theme.spacing(5),
   },
 
   detailsButtonText: {
-    fontSize: "0.9vh"
-  }
+    fontSize: "0.9vh",
+  },
 });
 
 export class TodoListDetails extends Component {
   constructor() {
     super();
     this.state = {
-      ...initialState
+      ...initialState,
     };
   }
 
-  completedButtonHandler = values => {
+  completedButtonHandler = (values) => {
     const { completeTodo, history } = this.props;
     completeTodo(values.id);
     history.push("/");
   };
 
-  saveButtonHandler = values => {
+  saveButtonHandler = (values) => {
     const { history, editTodo } = this.props;
     editTodo(values);
     history.push("/");
@@ -86,7 +86,7 @@ export class TodoListDetails extends Component {
           <Formik
             initialValues={todo}
             validationSchema={EditFormSchema}
-            onSubmit={values => {
+            onSubmit={(values) => {
               saveButtonHandler(values);
             }}
           >
@@ -97,7 +97,7 @@ export class TodoListDetails extends Component {
               values,
               handleChange,
               touched,
-              isValid
+              isValid,
             }) => (
               <Paper>
                 <Grid container className={classes.edit}>
@@ -190,39 +190,39 @@ export class TodoListDetails extends Component {
 }
 
 TodoListDetails.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, props) => {
   if (state.todos.mounted) {
     const currentTodo = state.todos.todos.find(
-      todo => todo.id === parseInt(props.match.params.id, 10)
+      (todo) => todo.id === parseInt(props.match.params.id, 10)
     );
     const { title, description, completed } = currentTodo;
     const initialTodo = {
       title: title,
       description: description,
-      completed: completed
+      completed: completed,
     };
     return {
       todo: currentTodo,
       initialTodo: initialTodo,
-      mounted: state.todos.mounted
+      mounted: state.todos.mounted,
     };
   }
 
   return {
     todo: {},
     initialTodo: {},
-    mounted: state.todos.mounted
+    mounted: state.todos.mounted,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchTodos: () => dispatch(fetchTodos()),
   editTodo: (id, updates) => dispatch(editTodo(id, updates)),
-  completeTodo: id => dispatch(completeTodo(id)),
-  removeTodo: id => dispatch(removeTodo(id))
+  completeTodo: (id) => dispatch(completeTodo(id)),
+  removeTodo: (id) => dispatch(removeTodo(id)),
 });
 
 export default connect(
